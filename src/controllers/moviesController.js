@@ -63,7 +63,7 @@ const moviesController = {
         .then (Movie=>{
             res.render('moviesEdit',{
                 Movie,
-                release_date: moment(Movie.release_date).format('YYYY-MM-DD')
+                release_date: moment(Movie.release_date).add(1,'d').format('YYYY-MM-DD')
             })
         }).catch((error)=>console.log(error))
     },
