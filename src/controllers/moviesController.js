@@ -68,7 +68,21 @@ const moviesController = {
         }).catch((error)=>console.log(error))
     },
     update: function (req,res) {
-        // TODO
+        const {title, awards, rating, release_date, length}=req.body
+        db.Movie.update({
+            title:title.trim(),
+            rating,
+            awards,
+            release_date,
+            length
+        },
+        {
+            where:{
+                id:req.params.id,
+
+            }
+        })  .then(()=>{return res.redirect('/movies/detail/'+ req.params.id)})
+        .catch((error)=>console.log(error))
     },
     delete: function (req, res) {
         // TODO
