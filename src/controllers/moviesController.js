@@ -1,3 +1,4 @@
+const moment = require('moment');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 
@@ -58,7 +59,13 @@ const moviesController = {
          .catch((error)=>console.log(error));
     },
     edit: function(req, res) {
-        // TODO
+        db.Movie.findByPk(req.params.id)
+        .then (Movie=>{
+            res.render('moviesEdit',{
+                Movie,
+                release_date: moment(Movie.release_date).format('YYYY-MM-DD')
+            })
+        }).catch((error)=>console.log(error))
     },
     update: function (req,res) {
         // TODO
